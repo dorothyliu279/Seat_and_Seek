@@ -352,17 +352,19 @@ void updateSeatState()
   {
     seatState = SEAT_OUT_OF_SERVICE;
   }
+  else if (occupied)
+  {
+    // Person detected should override "reserved"
+    seatState = SEAT_OCCUPIED;
+  }
   else if (cloudOverride == OVERRIDE_RESERVED)
   {
+    // Only show reserved when nobody is currently there
     seatState = SEAT_RESERVED;
   }
   else if (awayActive)
   {
     seatState = SEAT_TEMP_BUSY;
-  }
-  else if (occupied)
-  {
-    seatState = SEAT_OCCUPIED;
   }
   else
   {
